@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Harias Restaurant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: bisque;
+    color: #333;
+}
+
+/* Header */
+header {
+    background-color: #f85e2f;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+}
+
+/* Container */
+.container {
+    width: 70%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* Menu Section */
+.menu-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Individual Menu Item */
+.menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    padding: 10px;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Menu Item Image */
+.menu-item img {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+}
+
+/* Menu Item Text */
+.menu-item span {
+    font-size: 1rem;
+    font-weight: bold;
+    flex: 1;
+    text-align: left;
+    margin-left: 10px;
+}
+
+/* Quantity Input */
+.quantity {
+    width: 40px;
+    padding: 5px;
+    font-size: 0.9rem;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Cart Section */
+.cart-section {
+    width: 70%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* Cart Container */
+.cart-container {
+    background: white;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    width: 300px;
+    margin: 20px auto;
+}
+
+/* Coupon Section */
+.coupon-section {
+    margin-top: 10px;
+}
+
+.coupon-section input {
+    width: 70%;
+    padding: 5px;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Button Styles */
+button {
+    background-color: #d2691e;
+    color: white;
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+    width: 120px;
+    margin: 10px 0;
+}
+
+button:hover {
+    background-color: #a0522d;
+    transform: scale(1.05);
+}
+/* Quantity Input */
+.quantity {
+    width: 60px;
+    height: 35px;
+    padding: 5px;
+    font-size: 1rem;
+    text-align: center;
+    border: 2px solid #a0522d;
+    border-radius: 8px;
+    background: #fff;
+    color: #333;
+    font-weight: bold;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover & Focus Effect */
+.quantity:hover,
+.quantity:focus {
+    border-color: #d2691e;
+    box-shadow: 0 0 8px #f85e2f;
+}
+
+/* Custom Buttons for Quantity Input */
+.quantity::-webkit-inner-spin-button, 
+.quantity::-webkit-outer-spin-button {
+    opacity: 1;
+    width: 20px;
+    height: 20px;
+    background: #d2691e;
+    border-radius: 50%;
+    cursor: pointer;
+}
+/* Menu Item Image - Blowing Effect */
+.menu-item img {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.menu-item img:hover {
+    transform: scale(1.2); /* Increases size by 20% */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Adds a soft glow effect */
+}
+/* Menu Item - Blowing Effect */
+.menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    padding: 10px;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.menu-item:hover {
+    transform: scale(1.1); /* Increases size by 10% */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Adds a deeper shadow */
+}
+/* Invoice Section */
+.bill-container {
+    width: 60%;
+    margin: 20px auto;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.bill-container h2 {
+    color: #8b4513;
+    margin-bottom: 5px;
+}
+
+.bill-container hr {
+    border: 1px solid #ddd;
+}
+
+.bill-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.bill-container th, .bill-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.bill-container th {
+    background: #d2691e;
+    color: white;
+}
+/* General Invoice Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+/* Invoice Container */
+.bill-container {
+    width: 60%;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Header */
+.bill-container h2 {
+    color: #8b4513;
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+.bill-container p {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+/* Separator Line */
+.bill-container hr {
+    border: 1px solid #ddd;
+    margin: 15px 0;
+}
+
+/* Invoice Table */
+.bill-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.bill-container th, 
+.bill-container td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.bill-container th {
+    background: #d2691e;
+    color: white;
+    font-size: 1rem;
+}
+
+.bill-container td {
+    font-size: 0.95rem;
+}
+
+/* Total Section */
+.bill-container h3 {
+    color: #8b4513;
+    margin-top: 15px;
+}
+
+/* Print Button */
+.print-btn {
+    background-color: #d2691e;
+    color: white;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.print-btn:hover {
+    background-color: #a0522d;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .bill-container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .bill-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .bill-container th, 
+    .bill-container td {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    .print-btn {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+}
+
+</style>
+<body>
+    <header>
+        <h1>Harias Restaurant</h1>
+        <p>Authentic South Indian Dishes & Meals</p>
+    </header>
+
+    <div class="container">
+        <h1>Order Your Meal</h1>
+
+        <div class="menu-section">
+
+            <div class="menu-item">
+                <img src="images/biriyani.jpg" alt="Biriyani">
+                <span>Biriyani - ₹300</span>
+                <input type="number" class="quantity" min="0" value="0">
+            </div>
+
+            <div class="menu-item">
+                <img src="images/porotta.jpg" alt="Porotta">
+                <span>Porotta - ₹50</span>
+                <input type="number" class="quantity" min="0" value="0">
+            </div>
+
+            <div class="menu-item">
+                <img src="images/chicken fridrice.jpg" alt="Fried Rice">
+                <span>Fried Rice - ₹200</span>
+                <input type="number" class="quantity" min="0" value="0">
+            </div>
+
+            <div class="menu-item">
+                <img src="images/chilli chicken.jpg" alt="Chilli Chicken">
+                <span>Chilli Chicken - ₹250</span>
+                <input type="number" class="quantity" min="0" value="0">
+            </div>
+
+            <div class="menu-item">
+                <img src="images/dragon chicken.jpg" alt="Dragon Chicken">
+                <span>Dragon Chicken - ₹280</span>
+                <input type="number" class="quantity" min="0" value="0">
+            </div>
+
+            <div class="menu-item">
+                <img src="images/honey chicken.jpg" alt="Honey Chicken">
+                <span>Honey Chicken - ₹260</span>
+                <input type="number" class="quantity" min="0" value="0">
+            </div>
+
+            <div class="menu-item">
+                <img src="images/pepper chicken.jpg" alt="Pepper Chicken">
+                <span>Pepper Chicken - ₹270</span>
+                <input type="number" class="quantity" min="0" value="0">
+            </div>
+
+            <div class="menu-item">
+                <img src="images/bbutter arlic chicken.jpg" alt="Butter Garlic Chicken">
+                <span>Butter Garlic Chicken - ₹290</span>
+                <input type="number" class="quantity" min="0" value="0">
+            </div>
+
+            <div class="menu-item">
+                <img src="images/mutton curry.jpg" alt="Mutton Curry">
+                <span>Mutton Curry - ₹320</span>
+                <input type="number" class="quantity" min="0" value="0">
+            </div>
+
+            <div class="menu-item">
+                <img src="images/mutton pepper fry.jpg" alt="Mutton Pepper Fry">
+                <span>Mutton Pepper Fry - ₹340</span>
+                <input type="number" class="quantity" min="0" value="0">
+            </div>
+
+            <div class="menu-item">
+                <img src="images/idli.jpg" alt="Idli">
+                <span>Idli - ₹50</span>
+                <input type="number" class="quantity" min="0" value="0">
+            </div>
+
+            <div class="menu-item">
+                <img src="images/checken noodles.jpg" alt="Chicken Noodles">
+                <span>Chicken Noodles - ₹180</span>
+                <input type="number" class="quantity" min="0" value="0">
+            </div>
+        </div>
+    </div>
+    <!-- Cart Section -->
+    <div class="cart-section">
+        <button class="order-btn">Add to Cart</button>
+
+        <div class="cart-container">
+            <h2>Your Cart</h2>
+            <p>Subtotal: ₹<span id="subtotal">0</span></p>
+
+            <div class="coupon-section">
+                <p>Apply your coupon here:</p>
+                <input type="text" id="coupon" placeholder="Enter coupon code">
+                <button class="apply-btn">Apply</button>
+            </div>
+
+            <p>Discount: ₹<span id="discount">0</span></p>
+            <p>Shipping Fees: ₹<span id="shipping">2</span></p>
+            <h3>Total: ₹<span id="total">0</span></h3>
+
+            <button id="checkout-btn">
+                <a href="order.html">Checkout</a>
+            </button>
+        </div>
+    </div>
+
+<!-- Invoice Section -->
+<div id="invoice-section"></div>
+
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const addToCartBtn = document.querySelector(".order-btn");
+        const checkoutBtn = document.getElementById("checkout-btn");
+        const quantityInputs = document.querySelectorAll(".quantity");
+        const subtotalElement = document.getElementById("subtotal");
+        const discountElement = document.getElementById("discount");
+        const shippingElement = document.getElementById("shipping");
+        const totalElement = document.getElementById("total");
+
+        let selectedItems = [];
+
+        addToCartBtn.addEventListener("click", function () {
+            let subtotal = 0;
+            selectedItems = [];
+
+            quantityInputs.forEach(input => {
+                let quantity = parseInt(input.value);
+                if (quantity > 0) {
+                    let itemName = input.previousElementSibling.textContent.split(" - ")[0];
+                    let price = parseInt(input.previousElementSibling.textContent.match(/\d+/)[0]);
+                    let itemTotal = price * quantity;
+                    subtotal += itemTotal;
+
+                    selectedItems.push({ name: itemName, price: price, qty: quantity, total: itemTotal });
+                }
+            });
+
+            let gst = subtotal * 0.02;
+            let shipping = 2;
+            let total = subtotal + gst + shipping;
+
+            subtotalElement.textContent = subtotal.toFixed(2);
+            discountElement.textContent = gst.toFixed(2);
+            shippingElement.textContent = shipping.toFixed(2);
+            totalElement.textContent = total.toFixed(2);
+        });
+
+        checkoutBtn.addEventListener("click", function () {
+            if (selectedItems.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+
+            let invoiceData = {
+                invoiceNo: Math.floor(1000 + Math.random() * 9000),
+                date: new Date().toLocaleDateString(),
+                time: new Date().toLocaleTimeString(),
+                items: selectedItems,
+                subtotal: subtotalElement.textContent,
+                gst: discountElement.textContent,
+                shipping: shippingElement.textContent,
+                total: totalElement.textContent
+            };
+
+            localStorage.setItem("invoice", JSON.stringify(invoiceData));
+            window.location.href = "order.html";
+        });
+    });
+</script>
+
+
+
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Reviews & Ratings</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .review-container {
+            max-width: 700px;
+            background: white;
+            padding: 25px;
+            margin: 20px auto;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #eb5021;
+            font-size: 26px;
+        }
+
+        .rating-summary {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .reviews {
+            text-align: left;
+            max-height: 350px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+
+        .review {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .stars {
+            color: #eb5021;
+        }
+
+        select, input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            background-color: #eb5021;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #c43d18;
+        }
+
+        .external-links {
+            margin-top: 15px;
+        }
+
+        .external-links a {
+            display: inline-block;
+            margin: 5px;
+            text-decoration: none;
+            color: white;
+            background-color: #444;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .external-links a:hover {
+            background-color: #222;
+        }
+    </style>
+</head>
+<body>
+    <div class="review-container">
+        <h2>Customer Reviews</h2>
+        <p class="rating-summary">Average Rating: <span id="average-rating">5.0</span> ⭐ (Based on <span id="review-count">0</span> Reviews)</p>
+        
+        <div class="reviews" id="reviews-list"></div>
+        
+        <h3>Leave a Review</h3>
+        <select id="rating">
+            <option value="5">⭐⭐⭐⭐⭐ - Excellent</option>
+            <option value="4">⭐⭐⭐⭐ - Good</option>
+            <option value="3">⭐⭐⭐ - Average</option>
+            <option value="2">⭐⭐ - Poor</option>
+            <option value="1">⭐ - Bad</option>
+        </select>
+        <input type="text" id="reviewer-name" placeholder="Your Name">
+        <textarea id="review-text" placeholder="Write your review..."></textarea>
+        <button onclick="submitReview()">Submit Review</button>
+        
+        <div class="external-links">
+            <h4>Find us on:</h4>
+            <a href="#">Google Reviews</a>
+            <a href="#">Yelp</a>
+            <a href="#">TripAdvisor</a>
+        </div>
+    </div>
+
+    <script>
+        let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+        function displayReviews() {
+            let reviewsList = document.getElementById("reviews-list");
+            reviewsList.innerHTML = "";
+            let totalRating = 0;
+
+            reviews.forEach(review => {
+                totalRating += review.rating;
+                reviewsList.innerHTML += `
+                    <div class="review">
+                        <p class="stars">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</p>
+                        <p><strong>${review.name}</strong></p>
+                        <p>${review.text}</p>
+                    </div>
+                `;
+            });
+
+            let avgRating = reviews.length ? (totalRating / reviews.length).toFixed(1) : "0.0";
+            document.getElementById("average-rating").textContent = avgRating;
+            document.getElementById("review-count").textContent = reviews.length;
+        }
+
+        function submitReview() {
+            let rating = parseInt(document.getElementById("rating").value);
+            let name = document.getElementById("reviewer-name").value.trim();
+            let text = document.getElementById("review-text").value.trim();
+
+            if (name === "" || text === "") {
+                alert("Please fill out all fields!");
+                return;
+            }
+
+            let newReview = { rating, name, text };
+            reviews.push(newReview);
+            localStorage.setItem("reviews", JSON.stringify(reviews));
+            displayReviews();
+        }
+
+        displayReviews();
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - TK3 Restaurant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body{
+      background-color: rgb(250, 203, 145);
+  }
+</style>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Harias Restaurant</h1>
+            <p>Authentic South Indian Dishes & Meals</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <!-- <li><a href="signup.html">Signup</a></li>
+                <li><a href="login.html">Login</a></li> -->
+            </ul>
+        </nav>
+    </header>
+
+    <section id="signup">
+        <h2>Sign Up</h2>
+        <div class="signup-container">
+            <form action="/signup_form" method="POST">
+                <input type="text" name="name" placeholder="Full Name" required><br>
+                <input type="email" name="email" placeholder="Email Address" required><br>
+                <input type="password" name="password" placeholder="Password" required><br>
+                <input type="password" name="confirm_password" placeholder="Confirm Password" required><br>
+                <button type="submit">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 TK3 Restaurant. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

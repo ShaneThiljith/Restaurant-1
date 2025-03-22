@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice - Harias Restaurant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="bill-container">
+        <h2>Asan Restaurant</h2>
+        <p>Authentic South Indian Dishes & Meals</p>
+        <p>GST No: M43010GH195260</p>
+        <hr>
+        <p><strong>Invoice No:</strong> <span id="invoice-no"></span></p>
+        <p><strong>Date:</strong> <span id="invoice-date"></span> <strong>Time:</strong> <span id="invoice-time"></span></p>
+        <hr>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Total</th>
+            </tr>
+            <tbody id="invoice-items"></tbody>
+        </table>
+        <hr>
+        <p><strong>Sub-Total:</strong> ₹<span id="subtotal"></span></p>
+        <p><strong>GST (2%):</strong> ₹<span id="gst"></span></p>
+        <p><strong>Shipping:</strong> ₹<span id="shipping"></span></p>
+        <h3><strong>Total:</strong> ₹<span id="total"></span></h3>
+        <hr>
+        <p><strong>Mode:</strong> Cash</p>
+        <p><strong>Save Paper, Save Nature!</strong></p>
+        <button onclick="window.print()">Print Invoice</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let invoiceData = JSON.parse(localStorage.getItem("invoiceData"));
+
+            if (!invoiceData) {
+                alert("No invoice data found!");
+                window.location.href = "index.html"; // Redirect back if no data
+                return;
+            }
+
+            document.getElementById("invoice-no").textContent = invoiceData.invoiceNo;
+            document.getElementById("invoice-date").textContent = invoiceData.date;
+            document.getElementById("invoice-time").textContent = invoiceData.time;
+            document.getElementById("subtotal").textContent = invoiceData.subtotal;
+            document.getElementById("gst").textContent = invoiceData.gst;
+            document.getElementById("shipping").textContent = invoiceData.shipping;
+            document.getElementById("total").textContent = invoiceData.total;
+
+            let invoiceItems = document.getElementById("invoice-items");
+            invoiceItems.innerHTML = invoiceData.items.map(item => `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>₹${item.price}</td>
+                    <td>${item.qty}</td>
+                    <td>₹${item.total}</td>
+                </tr>
+            `).join("");
+        });
+    </script>
+</body>
+</html>

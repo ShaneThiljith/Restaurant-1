@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - TK3 Restaurant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body{
+      background-color: rgb(47, 38, 78);
+  }
+  .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 15px;
+  background-color: #9e4ce2#4ce2d6;
+  outline: 3px #5e5454;
+  outline-offset: -3px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: 400ms;
+}
+
+.button .text {
+  color: white;
+  font-weight: 700;
+  font-size: 1em;
+  transition: 400ms;
+}
+
+.button svg path {
+  transition: 400ms;
+}
+
+.button:hover {
+  background-color: transparent;
+}
+
+.button:hover .text {
+  color: #5e5454;
+}
+
+.button:hover svg path {
+  fill: #5e5454;
+}
+.button {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.button {
+  position: absolute;
+  top: 30px;  /* Adjust this value as needed */
+  right: 10px; /* Adjust this value as needed */
+}
+header {
+  position: relative;
+}
+#contact {
+    background: url(Templates/images/b5.jpg) no-repeat center center;
+    background-size: cover;
+    color: white;
+    padding: 50px 0;
+    position: relative;
+}
+
+#contact::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(66, 62, 62, 0.6); /* Dark overlay for readability */
+    z-index: 1;
+}
+
+.contact-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.contact-info, .contact-form {
+    max-width: 400px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 10px;
+    background: #ff5722;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+header {
+    background: linear-gradient(135deg, #cc5fff, #5a277c); /* Gradient from orange to light peach */
+
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.logo p {
+    margin: 5px 0 0;
+    font-size: 1rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    color: #f4f4f4;
+}
+
+.button {
+    background: rgba(0, 0, 0, 0.2);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.button svg {
+    margin-right: 5px;
+}
+
+.button a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+header {
+    background-image: url(Templates/images/h1.jpg); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: rgb(192, 87, 218); /* Ensures text is readable */
+    padding: 20px 0; /* Adjust padding as needed */
+    text-align: center;
+}
+</style>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Harias Restaurant</h1>
+            <p>Authentic South Indian Dishes & Meals</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="booking/index.php">Booking</a></li>
+            </ul>
+        </nav>
+        <button class="button">
+            <svg viewBox="0 0 16 16" class="bi bi-cart-check" height="24" width="24" xmlns="http://www.w3.org/2000/svg" fill="#fff">
+             <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"></path>
+             <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
+           </svg>
+           <a href="one.html">BUY</a>
+           </button>
+    </header>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-container">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <p><strong>Address:</strong> 123 South Indian Street, Chennai, Tamil Nadu</p>
+                <p><strong>Phone:</strong> +91 98765 43210</p>
+                <p><strong>Email:</strong> support@tk3restaurant.com</p>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.917446905917!2d144.9630576!3d-37.8141079!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d46903803fd%3A0xf0173a5244f4c9a4!2sFederation%20Square!5e0!3m2!1sen!2sin!4v1693664150658!5m2!1sen!2sin"
+                    width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h3>Send Us a Message</h3>
+                <form action="/contact_form" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required><br>
+                    <input type="email" name="email" placeholder="Your Email" required><br>
+                    <textarea name="message" rows="5" placeholder="Your Message" required></textarea><br>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 TK3 Restaurant. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

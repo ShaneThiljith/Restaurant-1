@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Invoice - Harias Restaurant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+/* General Page Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Invoice Container */
+.bill-container {
+    max-width: 600px;
+    background-color: white;
+    padding: 25px;
+    margin: 30px auto;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    border-top: 5px solid #eb5021;
+}
+
+/* Heading */
+h2 {
+    color: #eb5021;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+p {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+    margin: 15px 0;
+}
+
+/* Invoice Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+thead {
+    background-color: #eb5021;
+    color: white;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+td {
+    color: #444;
+}
+
+/* Total Section */
+h3 {
+    font-size: 20px;
+    color: #eb5021;
+    margin: 10px 0;
+}
+
+/* Buttons */
+button {
+    background-color: #eb5021;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: #c43d18;
+}
+
+/* Payment Options */
+.payment-options {
+    margin-top: 20px;
+}
+
+.payment-options button {
+    background-color: #444;
+    margin: 5px;
+}
+
+.payment-options button:hover {
+    background-color: #222;
+}
+
+/* QR Code & PIN Input */
+#paytm-qr, #card-pin {
+    display: none;
+    margin-top: 15px;
+}
+
+input[type="password"] {
+    padding: 10px;
+    font-size: 16px;
+    width: 60%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* Paid Message */
+#payment-status {
+    font-size: 18px;
+    font-weight: bold;
+    color: green;
+    margin-top: 15px;
+}
+</style>
+<body>
+
+    <div class="bill-container">
+        <h2>Harias Restaurant</h2>
+        <p>Authentic South Indian Dishes & Meals</p>
+        <p>GST No: M43010GH195260</p>
+        <hr>
+        <p><strong>Invoice No:</strong> <span id="invoice-no"></span></p>
+        <p><strong>Date:</strong> <span id="invoice-date"></span> <strong>Time:</strong> <span id="invoice-time"></span></p>
+        <hr>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="invoice-items"></tbody>
+        </table>
+
+        <hr>
+        <p><strong>Sub-Total:</strong> ₹<span id="invoice-subtotal"></span></p>
+        <p><strong>GST (2%):</strong> ₹<span id="invoice-gst"></span></p>
+        <p><strong>Shipping:</strong> ₹<span id="invoice-shipping"></span></p>
+        <h3><strong>Total:</strong> ₹<span id="invoice-total"></span></h3>
+        <hr>
+        
+        <p><strong>Select Payment Mode:</strong></p>
+        <div class="payment-options">
+            <button onclick="payCash()">Cash</button>
+            <button onclick="payPaytm()">Paytm</button>
+            <button onclick="payCard()">Card</button>
+        </div>
+
+        <!-- QR Code -->
+        <div id="paytm-qr">
+            <p>Scan & Pay via Paytm:</p>
+            <img src="Templates/images/qr.jpg" alt="Paytm QR Code" width="200">
+            <p id="payment-status"></p>
+        </div>
+
+        <!-- Card PIN Input -->
+        <div id="card-pin">
+            <p>Enter Card PIN:</p>
+            <input type="password" id="pin-input" placeholder="****">
+            <button onclick="confirmCardPayment()">Submit</button>
+        </div>
+
+        <button onclick="window.print()">Print Invoice</button>
+    </div>
+    <button onclick="window.print()">Print Invoice</button>
+    <button onclick="goToReview()">Review</button>
+    
+<script>
+        function goToReview() {
+            window.location.href = "rating.html";
+        }
+</script>
+    
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let invoiceData = JSON.parse(localStorage.getItem("invoice"));
+
+        if (!invoiceData) {
+            alert("No invoice found!");
+            window.location.href = "one.html";
+            return;
+        }
+
+        document.getElementById("invoice-no").textContent = invoiceData.invoiceNo;
+        document.getElementById("invoice-date").textContent = invoiceData.date;
+        document.getElementById("invoice-time").textContent = invoiceData.time;
+        document.getElementById("invoice-subtotal").textContent = invoiceData.subtotal;
+        document.getElementById("invoice-gst").textContent = invoiceData.gst;
+        document.getElementById("invoice-shipping").textContent = invoiceData.shipping;
+        document.getElementById("invoice-total").textContent = invoiceData.total;
+
+        let invoiceItemsContainer = document.getElementById("invoice-items");
+        invoiceData.items.forEach(item => {
+            let row = `<tr>
+                <td>${item.name}</td>
+                <td>₹${item.price}</td>
+                <td>${item.qty}</td>
+                <td>₹${item.total}</td>
+            </tr>`;
+            invoiceItemsContainer.innerHTML += row;
+        });
+
+        localStorage.removeItem("invoice");
+    });
+
+    function payCash() {
+        document.getElementById("paytm-qr").style.display = "none";
+        document.getElementById("card-pin").style.display = "none";
+        document.getElementById("payment-status").textContent = "Paid via Cash ✅";
+    }
+
+    function payPaytm() {
+        document.getElementById("paytm-qr").style.display = "block";
+        document.getElementById("card-pin").style.display = "none";
+        document.getElementById("payment-status").textContent = "Scan the QR to Pay!";
+    }
+
+    function payCard() {
+        document.getElementById("paytm-qr").style.display = "none";
+        document.getElementById("card-pin").style.display = "block";
+    }
+
+    function confirmCardPayment() {
+        let pin = document.getElementById("pin-input").value;
+        if (pin.length === 4) {
+            document.getElementById("payment-status").textContent = "Paid via Card ✅";
+            document.getElementById("card-pin").style.display = "none";
+        } else {
+            alert("Enter a valid 4-digit PIN");
+        }
+    }
+</script>
+
+</body>
+</html>

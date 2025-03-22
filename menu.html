@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Harias Restaurant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+/* Apply background image to the entire page */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Full viewport height */
+    background-image: url(Templates/images/h1.jpg); /* Replace with your image URL */
+    background-size: cover;  /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents repetition */
+    background-attachment: fixed; /* Keeps the background fixed while scrolling */
+    font-family: Arial, sans-serif; /* Sets a default font */
+    /* color: white; Ensures text is readable */
+}
+
+/* Optional: Add a semi-transparent overlay for better readability */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark transparent overlay */
+}
+
+/* Content styling */
+.content {
+    position: relative;
+    z-index: 1; /* Ensures content appears above overlay */
+    text-align: center;
+    padding: 20px;
+}
+  /* From Uiverse.io by Navarog21 */ 
+button {
+  position: relative;
+  width: 8em;
+  height: 3em;
+  outline: none;
+  transition: 0.1s;
+  background-color: transparent;
+  border: none;
+  font-size: 13px;
+  font-weight: bold;
+  color: #ddebf0;
+}
+
+#clip {
+  --color: #2761c3;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border: 5px double var(--color);
+  box-shadow: inset 0px 0px 15px #195480;
+  -webkit-clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+}
+
+.arrow {
+  position: absolute;
+  transition: 0.2s;
+  background-color: #2761c3;
+  top: 35%;
+  width: 11%;
+  height: 30%;
+}
+
+#leftArrow {
+  left: -13.5%;
+  -webkit-clip-path: polygon(100% 0, 100% 100%, 0 50%);
+}
+
+#rightArrow {
+  -webkit-clip-path: polygon(100% 49%, 0 0, 0 100%);
+  left: 102%;
+}
+
+button:hover #rightArrow {
+  background-color: #27c39f;
+  left: -15%;
+  animation: 0.6s ease-in-out both infinite alternate rightArrow8;
+}
+
+button:hover #leftArrow {
+  background-color: #27c39f;
+  left: 103%;
+  animation: 0.6s ease-in-out both infinite alternate leftArrow8;
+}
+
+.corner {
+  position: absolute;
+  width: 4em;
+  height: 4em;
+  background-color: #2761c3;
+  box-shadow: inset 1px 1px 8px #2781c3;
+  transform: scale(1) rotate(45deg);
+  transition: 0.2s;
+}
+
+#rightTop {
+  top: -1.98em;
+  left: 91%;
+}
+
+#leftTop {
+  top: -1.96em;
+  left: -3.0em;
+}
+
+#leftBottom {
+  top: 2.10em;
+  left: -2.15em;
+}
+
+#rightBottom {
+  top: 45%;
+  left: 88%;
+}
+
+button:hover #leftTop {
+  animation: 0.1s ease-in-out 0.05s both changeColor8,
+  0.2s linear 0.4s both lightEffect8;
+}
+
+button:hover #rightTop {
+  animation: 0.1s ease-in-out 0.15s both changeColor8,
+  0.2s linear 0.4s both lightEffect8;
+}
+
+button:hover #rightBottom {
+  animation: 0.1s ease-in-out 0.25s both changeColor8,
+  0.2s linear 0.4s both lightEffect8;
+}
+
+button:hover #leftBottom {
+  animation: 0.1s ease-in-out 0.35s both changeColor8,
+  0.2s linear 0.4s both lightEffect8;
+}
+
+button:hover .corner {
+  transform: scale(1.25) rotate(45deg);
+}
+
+button:hover #clip {
+  animation: 0.2s ease-in-out 0.55s both greenLight8;
+  --color: #27c39f;
+}
+
+@keyframes changeColor8 {
+  from {
+    background-color: #2781c3;
+  }
+
+  to {
+    background-color: #27c39f;
+  }
+}
+
+@keyframes lightEffect8 {
+  from {
+    box-shadow: 1px 1px 5px #27c39f;
+  }
+
+  to {
+    box-shadow: 0 0 2px #27c39f;
+  }
+}
+
+@keyframes greenLight8 {
+  from {
+  }
+
+  to {
+    box-shadow: inset 0px 0px 32px #27c39f;
+  }
+}
+
+@keyframes leftArrow8 {
+  from {
+    transform: translate(0px);
+  }
+
+  to {
+    transform: translateX(10px);
+  }
+}
+
+@keyframes rightArrow8 {
+  from {
+    transform: translate(0px);
+  }
+
+  to {
+    transform: translateX(-10px);
+  }
+}
+
+/* From Uiverse.io by JaydipPrajapati1910 */ 
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 15px;
+  background-color:  #9e4ce2;
+  outline: 3px #5e5454;
+  outline-offset: -3px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: 400ms;
+}
+
+.button .text {
+  color: white;
+  font-weight: 700;
+  font-size: 1em;
+  transition: 400ms;
+}
+
+.button svg path {
+  transition: 400ms;
+}
+
+.button:hover {
+  background-color: transparent;
+}
+
+.button:hover .text {
+  color: #5e5454;
+}
+
+.button:hover svg path {
+  fill: #5e5454;
+}
+.button {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.button {
+  position: absolute;
+  top: 30px;  /* Adjust this value as needed */
+  right: 10px; /* Adjust this value as needed */
+}
+header {
+  position: relative;
+}
+header {
+    background: linear-gradient(135deg, #cc5fff, #5a277c); /* Gradient from orange to light peach */
+
+}
+.menu {
+    background: url('images/menu-bg.jpg') no-repeat center center/cover;
+    padding: 50px 0;
+    text-align: center;
+    color: white; /* Ensures text is visible */
+}
+
+.menu h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Enhances readability */
+}
+
+.menu-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+.dish-front {
+    background: linear-gradient(135deg, #621088, #D63D3D);
+    color: white;
+}
+
+.dish-card {
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background for better contrast */
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.dish-card:hover {
+    transform: scale(1.05);
+}
+
+.dish-card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid white;
+}
+
+/* .dish-back {
+    padding: 15px;
+} */
+
+.button a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+header {
+    background-image: url(Templates/images/G1.jpg); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: rgb(194, 35, 122); /* Ensures text is readable */
+    padding: 20px 0; /* Adjust padding as needed */
+    text-align: center;
+}
+.dish-card {
+    width: 350px;
+    height: 350px;
+    perspective: 1000px;
+    display: inline-block;
+    margin: 20px;
+    border-radius: 50%; /* Makes it circular */
+    overflow: hidden;
+}
+
+.dish-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-in-out;
+    border-radius: 50%;
+}
+
+.dish-card:hover .dish-inner {
+    transform: rotateY(180deg);
+}
+
+/* Front & Back */
+.dish-front, .dish-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Front Side */
+.dish-front {
+    background: linear-gradient(135deg, #621088, #D63D3D);
+    color: white;
+}
+
+/* Image Styling */
+.dish-front img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Back Side */
+.dish-back {
+    background: linear-gradient(135deg, #46218b, #ff00d9);
+    color: white;
+    transform: rotateY(180deg);
+}
+
+/* Typography Enhancements */
+.dish-front h3, .dish-back h3 {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.dish-back p {
+    font-size: 1rem;
+    margin: 5px 0;
+    font-weight: 400;
+    color: #ffd700;
+}
+
+/* Add a Hover Glow Effect */
+.dish-card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+</style>
+<script>
+    function flipCard(card) {
+        card.classList.toggle("flipped");
+    }
+    </script>
+    
+<body>
+    <header>
+        <div class="logo">
+            <h1>Harias Restaurant</h1>
+            <p>Authentic South Indian Dishes & Meals</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="booking/index.php">Booking</a></li>
+
+            </ul>
+        </nav>
+        <!-- From Uiverse.io by JaydipPrajapati1910 --> 
+<button class="button">
+    <svg viewBox="0 0 16 16" class="bi bi-cart-check" height="24" width="24" xmlns="http://www.w3.org/2000/svg" fill="#fff">
+     <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"></path>
+     <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
+   </svg>
+   <a href="one.html">BUY</a>
+   </button>
+    </header>
+
+    <main>
+        <section class="menu">
+            <h2>Our Menu</h2>
+            <div class="menu-items">
+                <!-- Biriyani -->
+                <div class="dish-card" ontouchstart="flipCard(this)">
+                    <div class="dish-inner">
+                        <div class="dish-front">
+                            <img src="images/biriyani.jpg" alt="Biriyani">
+                            <h3>Biriyani</h3>
+                        </div>
+                        <div class="dish-back">
+                            <h3>Biriyani</h3>
+                            <p>Spiced rice with tender meat.</p>
+                            <span>₹300</span>                            <br>
+                            <button>
+                                 <div id="clip">
+                                    <a href="one.html">  B U Y </a>
+                                     <div id="leftTop" class="corner"></div>
+                                     <div id="rightBottom" class="corner"></div>
+                                     <div id="rightTop" class="corner"></div>
+                                     <div id="leftBottom" class="corner"></div>
+                                 </div>
+                                 <span id="rightArrow" class="arrow"></span>
+                                 <span id="leftArrow" class="arrow"></span>
+                             </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Porotta -->
+                <div class="dish-card" ontouchstart="flipCard(this)">
+                    <div class="dish-inner">
+                        <div class="dish-front">
+                            <img src="Templates/images/protta.jpg" alt="Porotta">
+                            <h3>Porotta</h3>
+                        </div>
+                        <div class="dish-back">
+                            <h3>Porotta</h3>
+                            <p>Soft and flaky flatbread, perfect with curry.</p>
+                            <span>₹50</span>
+                            <br>
+                            <button>
+                                 <div id="clip">
+                                    <a href="one.html">  B U Y </a>
+                                     <div id="leftTop" class="corner"></div>
+                                     <div id="rightBottom" class="corner"></div>
+                                     <div id="rightTop" class="corner"></div>
+                                     <div id="leftBottom" class="corner"></div>
+                                 </div>
+                                 <span id="rightArrow" class="arrow"></span>
+                                 <span id="leftArrow" class="arrow"></span>
+                             </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fried Rice -->
+                <div class="dish-card" ontouchstart="flipCard(this)">
+                    <div class="dish-inner">
+                        <div class="dish-front">
+                            <img src="images/chicken fridrice.jpg" alt="Fried Rice">
+                            <h3>Fried Rice</h3>
+                        </div>
+                        <div class="dish-back">
+                            <h3>Fried Rice</h3>
+                            <p>Stir-fried rice with vegetables and meat.</p>
+                            <span>₹200</span>                            <br>
+                            <button>
+                                 <div id="clip">
+                                    <a href="one.html">  B U Y </a>
+                                     <div id="leftTop" class="corner"></div>
+                                     <div id="rightBottom" class="corner"></div>
+                                     <div id="rightTop" class="corner"></div>
+                                     <div id="leftBottom" class="corner"></div>
+                                 </div>
+                                 <span id="rightArrow" class="arrow"></span>
+                                 <span id="leftArrow" class="arrow"></span>
+                             </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chicken Chilli -->
+                <div class="dish-card" ontouchstart="flipCard(this)">
+                    <div class="dish-inner">
+                        <div class="dish-front">
+                            <img src="images/chilli chicken.jpg" alt="Chicken Chilli">
+                            <h3>Chicken Chilli</h3>
+                        </div>
+                        <div class="dish-back">
+                            <h3>Chicken Chilli</h3>
+                            <p>Spicy fried chicken with tangy sauce.</p>
+                            <span>₹250</span>                            <br>
+                            <button>
+                                 <div id="clip">
+                                    <a href="one.html">  B U Y </a>
+                                     <div id="leftTop" class="corner"></div>
+                                     <div id="rightBottom" class="corner"></div>
+                                     <div id="rightTop" class="corner"></div>
+                                     <div id="leftBottom" class="corner"></div>
+                                 </div>
+                                 <span id="rightArrow" class="arrow"></span>
+                                 <span id="leftArrow" class="arrow"></span>
+                             </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dragon Chicken -->
+                <div class="dish-card" ontouchstart="flipCard(this)">
+                    <div class="dish-inner">
+                        <div class="dish-front">
+                            <img src="images/dragon chicken.jpg" alt="Dragon Chicken">
+                            <h3>Dragon Chicken</h3>
+                        </div>
+                        <div class="dish-back">
+                            <h3>Dragon Chicken</h3>
+                            <p>Sweet and spicy Indo-Chinese delight.</p>
+                            <span>₹280</span>                            <br>
+                            <button>
+                                 <div id="clip">
+                                    <a href="one.html">  B U Y </a>
+                                     <div id="leftTop" class="corner"></div>
+                                     <div id="rightBottom" class="corner"></div>
+                                     <div id="rightTop" class="corner"></div>
+                                     <div id="leftBottom" class="corner"></div>
+                                 </div>
+                                 <span id="rightArrow" class="arrow"></span>
+                                 <span id="leftArrow" class="arrow"></span>
+                             </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Honey Chicken -->
+                <div class="dish-card" ontouchstart="flipCard(this)">
+                    <div class="dish-inner">
+                        <div class="dish-front">
+                            <img src="images/honey chicken.jpg" alt="Honey Chicken">
+                            <h3>Honey Chicken</h3>
+                        </div>
+                        <div class="dish-back">
+                            <h3>Honey Chicken</h3>
+                            <p>Glazed with honey and mild spices.</p>
+                            <span>₹260</span>                            <br>
+                            <button>
+                                 <div id="clip">
+                                    <a href="one.html">  B U Y </a>
+                                     <div id="leftTop" class="corner"></div>
+                                     <div id="rightBottom" class="corner"></div>
+                                     <div id="rightTop" class="corner"></div>
+                                     <div id="leftBottom" class="corner"></div>
+                                 </div>
+                                 <span id="rightArrow" class="arrow"></span>
+                                 <span id="leftArrow" class="arrow"></span>
+                             </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pepper Chicken -->
+                <div class="dish-card" ontouchstart="flipCard(this)">
+                    <div class="dish-inner">
+                        <div class="dish-front">
+                            <img src="images/pepper chicken.jpg" alt="Pepper Chicken">
+                            <h3>Pepper Chicken</h3>
+                        </div>
+                        <div class="dish-back">
+                            <h3>Pepper Chicken</h3>
+                            <p>Loaded with crushed black pepper.</p>
+                            <span>₹270</span>                            <br>
+                            <button>
+                                 <div id="clip">
+                                    <a href="one.html">  B U Y </a>
+                                     <div id="leftTop" class="corner"></div>
+                                     <div id="rightBottom" class="corner"></div>
+                                     <div id="rightTop" class="corner"></div>
+                                     <div id="leftBottom" class="corner"></div>
+                                 </div>
+                                 <span id="rightArrow" class="arrow"></span>
+                                 <span id="leftArrow" class="arrow"></span>
+                             </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Butter Garlic Chicken -->
+                <div class="dish-card" ontouchstart="flipCard(this)">
+                    <div class="dish-inner">
+                        <div class="dish-front">
+                            <img src="images/bbutter arlic chicken.jpg" alt="Butter Garlic Chicken">
+                            <h3>Butter Garlic Chicken</h3>
+                        </div>
+                        <div class="dish-back">
+                            <h3>Butter Garlic Chicken</h3>
+                            <p>Rich buttery sauce with garlic flavor.</p>
+                            <span>₹290</span>                            <br>
+                            <button>
+                                 <div id="clip">
+                                    <a href="one.html">  B U Y </a>
+                                     <div id="leftTop" class="corner"></div>
+                                     <div id="rightBottom" class="corner"></div>
+                                     <div id="rightTop" class="corner"></div>
+                                     <div id="leftBottom" class="corner"></div>
+                                 </div>
+                                 <span id="rightArrow" class="arrow"></span>
+                                 <span id="leftArrow" class="arrow"></span>
+                             </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="dish-card" ontouchstart="flipCard(this)">
+                    <div class="dish-inner">
+                        <div class="dish-front">
+                            <img src="images/mutton curry.jpg" alt="Mutton Curry">
+                            <h3>Mutton Curry</h3>
+                        </div>
+                        <div class="dish-back">
+                            <h3>Mutton Curry</h3>
+                            <p>Rich and flavorful traditional curry.</p>
+                            <span>₹320</span>                            <br>
+                            <button>
+                                 <div id="clip">
+                                    <a href="one.html">  B U Y </a>
+                                     <div id="leftTop" class="corner"></div>
+                                     <div id="rightBottom" class="corner"></div>
+                                     <div id="rightTop" class="corner"></div>
+                                     <div id="leftBottom" class="corner"></div>
+                                 </div>
+                                 <span id="rightArrow" class="arrow"></span>
+                                 <span id="leftArrow" class="arrow"></span>
+                             </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="dish-card" ontouchstart="flipCard(this)">
+                    <div class="dish-inner">
+                        <div class="dish-front">
+                            <img src="images/mutton pepper fry.jpg" alt="Mutton Pepper Fry">
+                            <h3>Mutton Pepper Fry</h3>
+                        </div>
+                        <div class="dish-back">
+                            <h3>Mutton Pepper Fry</h3>
+                            <p>Spicy and aromatic mutton stir-fry.</p>
+                            <span>₹340</span>                            <br>
+                            <button>
+                                 <div id="clip">
+                                    <a href="one.html">  B U Y </a>
+                                     <div id="leftTop" class="corner"></div>
+                                     <div id="rightBottom" class="corner"></div>
+                                     <div id="rightTop" class="corner"></div>
+                                     <div id="leftBottom" class="corner"></div>
+                                 </div>
+                                 <span id="rightArrow" class="arrow"></span>
+                                 <span id="leftArrow" class="arrow"></span>
+                             </button>
+                        </div>
+                    </div>
+                </div>
+                    <div class="dish-card" ontouchstart="flipCard(this)">
+                        <div class="dish-inner">
+                            <div class="dish-front">
+                                <img src="images/idli.jpg" alt="Idli">
+                                <h3>Idli</h3>
+                            </div>
+                            <div class="dish-back">
+                                <h3>Idli</h3>
+                                <p>Soft steamed rice cakes.</p>
+                                <span>₹50</span>                            <br>
+                                <button>
+                                     <div id="clip">
+                                        <a href="one.html">  B U Y </a>
+                                         <div id="leftTop" class="corner"></div>
+                                         <div id="rightBottom" class="corner"></div>
+                                         <div id="rightTop" class="corner"></div>
+                                         <div id="leftBottom" class="corner"></div>
+                                     </div>
+                                     <span id="rightArrow" class="arrow"></span>
+                                     <span id="leftArrow" class="arrow"></span>
+                                 </button>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="dish-card" ontouchstart="flipCard(this)">
+                        <div class="dish-inner">
+                            <div class="dish-front">
+                                <img src="images/checken noodles.jpg" alt="Chicken Noodles">
+                                <h3>Chicken Noodles</h3>
+                            </div>
+                            <div class="dish-back">
+                                <h3>Chicken Noodles</h3>
+                                <p>Stir-fried noodles with chicken.</p>
+                                <span>₹180</span>                            <br>
+                                <button>
+                                     <div id="clip">
+                                        <a href="one.html">  B U Y </a>
+                                         <div id="leftTop" class="corner"></div>
+                                         <div id="rightBottom" class="corner"></div>
+                                         <div id="rightTop" class="corner"></div>
+                                         <div id="leftBottom" class="corner"></div>
+                                     </div>
+                                     <span id="rightArrow" class="arrow"></span>
+                                     <span id="leftArrow" class="arrow"></span>
+                                 </button>
+                            </div>
+                        </div>
+                    </div>
+              </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Harias Restaurant. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function flipCard(card) {
+            card.classList.toggle("flipped");
+        }
+    </script>
+</body>
+</html>
